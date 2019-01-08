@@ -121,7 +121,7 @@ export default {
       this.$refs.goods.validate(valid => {
         if (valid) {
           GoodsCreate(this.goods).then(res => {
-            console.log(res);
+            console.log(res)
             if (res.status === 200) {
               this.$notify.success({
                 title: '成功',

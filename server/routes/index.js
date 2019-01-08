@@ -1,4 +1,4 @@
-const login = require('../controllers/login')  //登录
+const mgr = require('../controllers/mgr')  //登录 改密 个人设置
 const goods = require('../controllers/goods')  //商品管理
 const order = require('../controllers/order')  //订单管理
 const cust = require('../controllers/cust')  //用户管理
@@ -7,7 +7,9 @@ const checkToken = require('../config/checkToken')
 const koaRouter = require('koa-router')
 const router = new koaRouter()
 
-router.post('/Login/loginByUsername', login.loginByUsername)
+router.post('/Mgr/loginByUsername', mgr.loginByUsername)
+router.get('/Mgr/info', checkToken, mgr.info)
+router.post('/Mgr/changePwd', checkToken, mgr.changePwd)
 router.post('/Goods/goodsList', checkToken, goods.goodsList)
 router.post('/Goods/goodsCreate', checkToken, goods.goodsCreate)
 router.post('/Goods/goodsDelete', checkToken, goods.goodsDelete)

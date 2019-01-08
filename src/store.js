@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookies from 'js-cookie'
-import { getToken } from '@/utils/auth'
+import { getToken, getMgr } from '@/utils/auth'
 
 Vue.use(Vuex)
 
@@ -13,15 +13,28 @@ export default new Vuex.Store({
     },
     device: 'desktop',
     token: getToken(),
+    mgr: {
+      name: getMgr() ? getMgr().username : null,
+      avatar: getMgr() ? getMgr().avatar : null
+    }
   },
   getters: {
     sidebar: state => state.sidebar,
     device: state => state.device,
-    token: state => state.token
+    token: state => state.token,
+    mgr: state => state.mgr
   },
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
+    },
+    SET_MGR: (state, mgr) => {
+      if (mgr.username) {
+        state.mgr.name = mgr.username
+      }
+      if (mgr.avatar) {
+        state.mgr.avatar = mgr.avatar
+      }
     },
     TOGGLE_SIDEBAR: state => {
       if (state.sidebar.opened) {
@@ -44,6 +57,9 @@ export default new Vuex.Store({
   actions: {
     SetToken: ({ commit }, token) => {
       commit('SET_TOKEN', token)
+    },
+    SetMgr: ( { commit }, mgr) => {
+      commit('SET_MGR', mgr)
     },
     ToggleSideBar: ({ commit }) => {
       commit('TOGGLE_SIDEBAR')

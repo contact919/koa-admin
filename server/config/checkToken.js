@@ -8,9 +8,9 @@ const jwt = require('jsonwebtoken')
 module.exports = async function (ctx, next) {
   if(ctx.request.header['authorization']) {
     let token = ctx.request.header['authorization'].split(' ')[1]
-    console.log(jwt.decode(token, 'sinner77'))
+    
     try {
-        tokenContent = await jwt.verify(token, 'sinner77');     //如果token过期或验证失败，将抛出错误
+        tokenContent = await jwt.verify(token, 'runner2019');     //如果token过期或验证失败，将抛出错误
         await next()
     } catch (err) {
       ctx.status = 401

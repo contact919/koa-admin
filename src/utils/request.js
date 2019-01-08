@@ -26,7 +26,7 @@ service.interceptors.response.use(
 
   error => {
     if (error.response.status === 401) { //token验证错误
-      MessageBox.alert('系统未登录，请重新登录', '未登录', {
+      MessageBox.alert('身份过期，请重新登录', '未登录', {
         confirmButtonText: '确定',
         type: 'error'
       }).then(() => {

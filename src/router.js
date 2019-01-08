@@ -3,14 +3,14 @@ import Router from 'vue-router'
 
 const Layout = r => require.ensure([], () => r(require('./views/Layout/index')), 'Layout')
 const error = r => require.ensure([], () => r(require('./views/404')), 'error')
-const login = r => require.ensure([], () => r(require('./views/Login/index')), 'login')
+const login = r => require.ensure([], () => r(require('./views/Mgr/login')), 'login')
 const goodsList = r => require.ensure([], () => r(require('./views/Goods/goodsList')), 'goodsList')
 const goodsCreate = r => require.ensure([], () => r(require('./views/Goods/goodsCreate')), 'goodsCreate')
 const goodsEdit = r => require.ensure([], () => r(require('./views/Goods/goodsEdit')), 'goodsEdit')
 const orderList = r => require.ensure([], () => r(require('./views/Order/orderList')), 'orderList')
 const custList = r => require.ensure([], () => r(require('./views/Cust/custList')), 'custList')
-const avatar = r => require.ensure([], () => r(require('./views/Set/avatar')), 'avatar')
-const password = r => require.ensure([], () => r(require('./views/Set/password')), 'password')
+const avatar = r => require.ensure([], () => r(require('./views/Mgr/avatar')), 'avatar')
+const password = r => require.ensure([], () => r(require('./views/Mgr/password')), 'password')
 
 Vue.use(Router)
 

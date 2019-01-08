@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import { LoginByUsername, LoginByToken } from '@/api/login'
+import { LoginByUsername, LoginByToken } from '@/api/mgr'
+import { setToken, setMgr } from '@/utils/auth'
 export default {
   name: 'login',
   data() {
@@ -82,18 +83,21 @@ export default {
           LoginByUsername(this.loginForm).then(rs => {
             if (rs.status === 200) {
               if (rs.data.data.code === 11) {
-                localStorage.setItem('authorization', rs.data.data.tk)
+                // set jwt token
                 this.$store.dispatch('SetToken',rs.data.data.tk)
+                setToken(rs.data.data.tk)
+                
+                // set avatar
+                this.$store.dispatch('SetMgr',rs.data.data.mgr)
+                setMgr(rs.data.data.mgr)
+                
                 this.$router.push({ path: '/goodsList' })
-                return
               }
               if (rs.data.data.code === -10) {
                 this.$message.error('帐号不存在')
-                return
               }
               if (rs.data.data.code === -11) {
                 this.$message.error('密码错误')
-                return
               }            
             }else {
               this.$notify.error({

@@ -4,7 +4,7 @@
     <breadcrumb></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img class="user-avatar" src="./../../../../public/mgr.png">
+        <img class="user-avatar" :src="mgr.avatar">
         <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -23,6 +23,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { removeToken, removeMgr } from '@/utils/auth'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -34,7 +35,7 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'mgr'
     ])
   },
   methods: {
@@ -42,8 +43,11 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
-      localStorage.removeItem('authorization');
-      this.$store.commit('SET_TOKEN','');
+      this.$store.commit('SET_TOKEN', null)
+      removeToken()
+
+      this.$store.commit('SET_MGR',{username: null, avatar: null})
+      removeMgr()
       this.$router.push('/login');
       // this.$store.dispatch('LogOut').then(() => {
       //   location.reload() // 为了重新实例化vue-router对象 避免bug

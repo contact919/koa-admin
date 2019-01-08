@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
       <el-form-item label="帐号">
-        <el-input v-model="dataForm.oldPassword" disabled/>
+        <el-input v-model="username" disabled/>
       </el-form-item>
       <el-form-item label="原密码" prop="oldPassword">
         <el-input v-model="dataForm.oldPassword" type="password"/>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import { changePassword } from '@/api/profile'
+import { Info, ChangePwd } from '@/api/mgr'
 
 export default {
   name: 'password',
@@ -44,7 +44,9 @@ export default {
       }
     }
     return {
+      username: '',
       dataForm: {
+        id: '',
         oldPassword: '',
         newPassword: '',
         newPassword2: ''
@@ -64,15 +66,19 @@ export default {
       }
     }
   },
+  created() {
+    this.getUsrInfo(this.$store.state.token)
+  },
   methods: {
+    getUsrInfo(token) {
+      Info(token).then(res => {
+        this.username = res.data.data.username
+        this.dataForm.id = res.data.data.id
+      })
+    },
     cancel() {
-      this.dataForm = {
-        oldPassword: '',
-        newPassword: '',
-        newPassword2: ''
-      }
       this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+        this.$refs['dataForm'].resetFields()
       })
     },
     change() {
@@ -80,16 +86,18 @@ export default {
         if (!valid) {
           return
         }
-        changePassword(this.dataForm).then(response => {
-          this.$notify.success({
-            title: '成功',
-            message: '修改密码成功'
-          })
-        }).catch(response => {
-          this.$notify.error({
-            title: '失败',
-            message: response.data.errmsg
-          })
+        ChangePwd(this.dataForm).then(res => {
+          console.log(res);
+          if (res.status === 200) {
+            if (res.data.data && res.data.data.code === -18) {
+              this.$message.error('原密码错误')
+            }else{
+              this.$notify.success({
+                title: '成功',
+                message: '修改密码成功'
+              })
+            }
+          }
         })
       })
     }
