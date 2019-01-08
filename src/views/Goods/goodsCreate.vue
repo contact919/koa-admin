@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { getToken } from '@/utils/auth'
 import { GoodsCreate } from '@/api/goods'
 import uploadPath from '@/api/upload'
 
@@ -86,7 +87,7 @@ export default {
   computed: {
     headers() {
       return {
-        'X-Litemall-Admin-Token': 12345
+        'authorization': `Bearer ${getToken()}`
       }
     }
   },

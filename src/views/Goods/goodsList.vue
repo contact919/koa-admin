@@ -82,13 +82,6 @@ export default {
       dialogStatus: '',
     }
   },
-  computed: {
-    headers() {
-      return {
-        'X-Litemall-Admin-Token': '12345'
-      }
-    }
-  },
   created() {
     this.getList()
   },
@@ -101,8 +94,6 @@ export default {
           this.total = res.data.data.count
           this.listLoading = false  
         }
-      }).catch((err) => {
-        console.log(err)
       })
     },
     handleFilter() {

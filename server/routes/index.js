@@ -1,4 +1,4 @@
-const mgr = require('../controllers/mgr')  //登录 改密 个人设置
+const mgr = require('../controllers/mgr')  //登录 改密 头像设置
 const goods = require('../controllers/goods')  //商品管理
 const order = require('../controllers/order')  //订单管理
 const cust = require('../controllers/cust')  //用户管理
@@ -8,18 +8,18 @@ const koaRouter = require('koa-router')
 const router = new koaRouter()
 
 router.post('/Mgr/loginByUsername', mgr.loginByUsername)
-router.get('/Mgr/info', checkToken, mgr.info)
-router.post('/Mgr/changePwd', checkToken, mgr.changePwd)
 router.post('/Goods/goodsList', checkToken, goods.goodsList)
 router.post('/Goods/goodsCreate', checkToken, goods.goodsCreate)
 router.post('/Goods/goodsDelete', checkToken, goods.goodsDelete)
 router.post('/Goods/goodsEdit', checkToken, goods.goodsEdit)
 router.post('/Goods/goodsUpdate', checkToken, goods.goodsUpdate)
+router.post('/Mgr/setPwd', checkToken, mgr.setPwd)
+router.post('/Mgr/setAvatar', checkToken, mgr.setAvatar)
 
 router.post('/Order/orderList', checkToken, order.orderList)
 router.post('/Cust/custList', checkToken, cust.custList)
 
-router.post('/UploadPic', upload.single('file'), async (ctx) => {
+router.post('/UploadPic', checkToken, upload.single('file'), async (ctx) => {
   try {
     ctx.body = {
       code: 200,

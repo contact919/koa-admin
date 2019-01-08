@@ -14,14 +14,16 @@ export function LoginByToken(data) {
     data
   })
 }
-export function Info(tk) {
+export function SetPwd(data) {
   return request({
-    url: `/Mgr/info?token=${tk}`,
+    url: '/Mgr/setPwd',
+    method: 'post',
+    data
   })
 }
-export function ChangePwd(data) {
+export function SetAvatar(data) {
   return request({
-    url: '/Mgr/changePwd',
+    url: '/Mgr/setAvatar',
     method: 'post',
     data
   })

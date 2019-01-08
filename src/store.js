@@ -14,6 +14,7 @@ export default new Vuex.Store({
     device: 'desktop',
     token: getToken(),
     mgr: {
+      id: getMgr() ? getMgr().id : null,
       name: getMgr() ? getMgr().username : null,
       avatar: getMgr() ? getMgr().avatar : null
     }
@@ -29,12 +30,9 @@ export default new Vuex.Store({
       state.token = token
     },
     SET_MGR: (state, mgr) => {
-      if (mgr.username) {
-        state.mgr.name = mgr.username
-      }
-      if (mgr.avatar) {
-        state.mgr.avatar = mgr.avatar
-      }
+      state.mgr.id = mgr.id
+      state.mgr.name = mgr.username
+      state.mgr.avatar = mgr.avatar
     },
     TOGGLE_SIDEBAR: state => {
       if (state.sidebar.opened) {

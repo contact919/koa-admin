@@ -46,7 +46,7 @@ export default {
       this.$store.commit('SET_TOKEN', null)
       removeToken()
 
-      this.$store.commit('SET_MGR',{username: null, avatar: null})
+      this.$store.commit('SET_MGR',{id: null, username: null, avatar: null})
       removeMgr()
       this.$router.push('/login');
       // this.$store.dispatch('LogOut').then(() => {

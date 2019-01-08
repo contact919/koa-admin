@@ -6,14 +6,14 @@ const loginByUsername = async function (ctx, next) {
       data
   }
 }
-const info = async function (ctx, next) {
-  const data = await mgr.info(ctx.query)    //get请求
+const setPwd = async function (ctx, next) {
+  const data = await mgr.setPwd(ctx.request.body)
   ctx.body = {
       data
   }
 }
-const changePwd = async function (ctx, next) {
-  const data = await mgr.changePwd(ctx.request.body)
+const setAvatar = async function (ctx, next) {
+  const data = await mgr.setAvatar(ctx.request.body)
   ctx.body = {
       data
   }
@@ -21,6 +21,6 @@ const changePwd = async function (ctx, next) {
 // 导出对象
 module.exports = {
   loginByUsername,
-  info,
-  changePwd
+  setPwd,
+  setAvatar
 }

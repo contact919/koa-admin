@@ -1,8 +1,5 @@
-// const Sequelize =require('sequelize')
-// const Op = Sequelize.Op     //使用没有别名的 Sequelize 可以提高安全性
 const model = require('../schema/mgr.js')
 const createToken = require('../config/createToken')
-const jwt = require('jsonwebtoken')
 
 const login = async function (obj) {
   const dbUser = await model.find({
@@ -40,19 +37,7 @@ const login = async function (obj) {
   }  
 }
 
-const info = async function (obj) {
-  let token =  jwt.decode(obj.token, 'runner2019')  //解密token 获取管理员id
-  const dbInfo = await model.find({
-      where: {
-          id: token.id
-      },
-      attributes: { exclude: ['password'] }
-  })
-
-  return dbInfo
-}
-
-const changePwd = async function (obj) {
+const setPwd = async function (obj) {
   const user = await model.find({
       where: {
           id: obj.id,
@@ -79,9 +64,23 @@ const changePwd = async function (obj) {
       return
   }  
 }
+
+const setAvatar = async function (obj) {
+  const now = Date.now();
+  const upAvatar = await model.update({
+    avatar: obj.avatar,
+    update_time: now
+  },{
+      where:{
+        id: obj.id
+      }
+  })  
+
+  return
+}
   
 module.exports = {
     login,
-    info,
-    changePwd
+    setPwd,
+    setAvatar
 }
