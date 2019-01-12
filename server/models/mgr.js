@@ -1,3 +1,4 @@
+const fs = require('fs')
 const model = require('../schema/mgr.js')
 const createToken = require('../config/createToken')
 
@@ -66,7 +67,17 @@ const setPwd = async function (obj) {
 }
 
 const setAvatar = async function (obj) {
-  const now = Date.now();
+  // 删除原头像
+  const org = await model.find({
+    where:{
+      id: obj.id
+    }
+  })
+  await fs.unlink('static'+org['avatar'].substring(21), (err) => {
+    if (err) console.log(err)
+  })
+  // 更新头像
+  const now = Date.now()
   const upAvatar = await model.update({
     avatar: obj.avatar,
     update_time: now
@@ -74,7 +85,7 @@ const setAvatar = async function (obj) {
       where:{
         id: obj.id
       }
-  })  
+  })
 
   return
 }

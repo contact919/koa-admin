@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-      <el-form-item label="帐号">
+      <el-form-item label="用户名">
         <el-input v-model="mgr.name" disabled/>
       </el-form-item>
       <el-form-item label="原密码" prop="oldPassword">
@@ -14,9 +14,9 @@
         <el-input v-model="dataForm.newPassword2" type="password" auto-complete="off"/>
       </el-form-item>
     </el-form>
-    <div style="margin-left:100px;">
-      <el-button @click="cancel">取消</el-button>
-      <el-button type="primary" @click="change">确定</el-button>
+    <div class="btn-grouup">
+      <el-button @click="cancel" size="medium">取消</el-button>
+      <el-button type="primary" size="medium" @click="change">确定</el-button>
     </div>
   </div>
 </template>
@@ -104,3 +104,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .btn-grouup{
+    margin-top: 30px;
+    margin-left: 150px;
+  }
+</style>

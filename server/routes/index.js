@@ -13,11 +13,10 @@ router.post('/Goods/goodsCreate', checkToken, goods.goodsCreate)
 router.post('/Goods/goodsDelete', checkToken, goods.goodsDelete)
 router.post('/Goods/goodsEdit', checkToken, goods.goodsEdit)
 router.post('/Goods/goodsUpdate', checkToken, goods.goodsUpdate)
-router.post('/Mgr/setPwd', checkToken, mgr.setPwd)
-router.post('/Mgr/setAvatar', checkToken, mgr.setAvatar)
-
 router.post('/Order/orderList', checkToken, order.orderList)
 router.post('/Cust/custList', checkToken, cust.custList)
+router.post('/Mgr/setPwd', checkToken, mgr.setPwd)
+router.post('/Mgr/setAvatar', checkToken, mgr.setAvatar)
 
 router.post('/UploadPic', checkToken, upload.single('file'), async (ctx) => {
   try {

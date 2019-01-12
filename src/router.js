@@ -19,19 +19,19 @@ const routes = [
   { path:'/404', name:'error', component:error, hidden:true },
   { path: '/', redirect: '/login', hidden: true },
  
-  { path:'', name:'goods', component:Layout, meta:{ title: '商品管理', icon: 'form' }, children:[
-    {path:'goodsList', name:'goodsList', component:goodsList, meta:{ title: '商品列表'}},
-    {path:'goodsCreate', name:'goodsCreate', component:goodsCreate, meta:{ title: '商品上架'}},
-    {path:'goodsEdit', name:'goodsEdit', component:goodsEdit, hidden:true},
+  { path:'', name:'goods', component:Layout, children:[
+    {path:'goodsList', name:'goodsList', component:goodsList, meta:{ title: '商品管理', icon: 'goods'}},
+    {path:'goodsCreate', name:'goodsCreate', component:goodsCreate, meta:{ title: '商品创建' }, hidden: true},
+    {path:'goodsEdit', name:'goodsEdit', component:goodsEdit, meta:{ title: '商品编辑' }, hidden:true},
   ]},
   { path:'', component:Layout, children:[
-    {path:'orderList', name:'orderList', component:orderList, meta:{ title: '订单管理', icon: 'form' }},
+    {path:'orderList', name:'orderList', component:orderList, meta:{ title: '订单管理', icon: 'order' }},
   ]},
   { path:'', name:'cust', component:Layout, children:[
-    {path:'custList', name:'custList', component:custList, meta:{ title: '用户管理', icon: 'form'}},
+    {path:'custList', name:'custList', component:custList, meta:{ title: '用户管理', icon: 'cust'}},
   ]},
-  { path:'', name:'set', component:Layout, meta:{ title: '设置', icon: 'form' }, children:[
-    {path:'avatar', name:'avatar', component:avatar, meta:{ title: '修改头像'}},
+  { path:'', name:'set', component:Layout, meta:{ title: '设置', icon: 'set' }, children:[
+    {path:'avatar', name:'avatar', component:avatar, meta:{ title: '更换头像'}},
     {path:'password', name:'password', component:password, meta:{ title: '修改密码'}},
   ]},
 

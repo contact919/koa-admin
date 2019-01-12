@@ -26,7 +26,7 @@
         <!-- 商品list -->
         <el-table-column align="center" label="图片">
           <template slot-scope="scope">
-            <img v-if="scope.row.pic_url" :src="scope.row.pic_url" width="40">
+            <img v-lazy="scope.row.pic_url" v-if="scope.row.pic_url" :src="scope.row.pic_url" width="40">
           </template>
         </el-table-column>
         <el-table-column align="center" label="商品编号" prop="goods_sn"/>
