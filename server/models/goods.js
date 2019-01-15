@@ -1,6 +1,8 @@
 const Sequelize =require('sequelize')
 const Op = Sequelize.Op     //使用没有别名的 Sequelize 可以提高安全性
-const model = require('../schema/goods.js')
+const db = require('../config/db.js' )
+const model = db.import('../schema/goods.js')
+model.sync() //有该表就不变 没有就新建，创建表并且返回一个 Promise 对象 默认情况下 forse = false
 
 const query = async function (obj) {
     const dbGoods = await model.findAndCountAll({ // 查找全部的todolist

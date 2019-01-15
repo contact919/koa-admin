@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "element-ui": "^2.4.5",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.4.0",

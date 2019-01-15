@@ -1,6 +1,8 @@
 const Sequelize =require('sequelize')
 const Op = Sequelize.Op     //使用没有别名的 Sequelize 可以提高安全性
-const model = require('../schema/cust.js')
+const db = require('../config/db.js' )
+const model = db.import('../schema/cust.js')
+model.sync()
 const utils = require('../utils')
 
 const query = async function (obj) {

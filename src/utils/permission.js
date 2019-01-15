@@ -7,7 +7,7 @@ NProgress.configure({ showSpinner: false })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  // 此处注意不能陷入死循环 ！
+  // 此处注意不能陷入死循环 一定要确保要调用 `next()` 方法，否则钩子就不会被 resolved！
   if (!getToken()) {
     if (to.path === '/login') {
       next()
@@ -23,6 +23,21 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
+
+  /** OR THIS
+   * if(to.path == '/login'){
+      if(token != 'null' && token != null){
+        next('/goodslist')
+      }
+      next();
+    }else{
+      if(token != 'null' && token != null){
+        next()
+      }else{
+        next('/login') // 否则跳转回登录页
+      }
+    }
+   */
 })
 
 router.afterEach(() => {

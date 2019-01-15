@@ -1,5 +1,8 @@
+const db = require('../config/db.js' )
+const model = db.import('../schema/mgr.js')
+model.sync()
 const fs = require('fs')
-const model = require('../schema/mgr.js')
+const bcrypt = require('bcryptjs')
 const createToken = require('../config/createToken')
 
 const login = async function (obj) {
@@ -18,11 +21,10 @@ const login = async function (obj) {
   const dbLogin = await model.find({
       where: {
           username: obj.name,
-          password: obj.passwd
       },
-      attributes: { exclude: ['password', 'add_time', 'update_time'] }
+      attributes: { exclude: ['add_time', 'update_time'] }
   })   
-  if (!dbLogin) {
+  if (!bcrypt.compareSync(obj.passwd, dbLogin.password)) {
     return {
       code: -11,
       msg: "密码错误"
@@ -39,22 +41,22 @@ const login = async function (obj) {
 }
 
 const setPwd = async function (obj) {
-  const user = await model.find({
+  const info = await model.find({
       where: {
-          id: obj.id,
-          password: obj.oldPassword
+          id: obj.id
       }
   })
-
-  if(!user) {    //先验证原密码
+  if (!bcrypt.compareSync(obj.oldPassword, info.password)) {  
       return {
         code: -18,
         msg: "原密码错误"
       }
   }else {       //更新密码
       const now = Date.now();
-      const upInfo = await model.update({
-        password: obj.newPassword,
+      const salt = bcrypt.genSaltSync(12);    //定义密码加密的计算强度,默认10
+      const hash = bcrypt.hashSync(obj.newPassword, salt); 
+      await model.update({
+        password: hash,
         update_time: now
       },{
           where:{
