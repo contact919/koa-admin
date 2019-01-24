@@ -9,7 +9,8 @@ const login = async function (obj) {
   const dbUser = await model.find({
       where: {
           username: obj.name
-      }
+      },
+      attributes: { exclude: ['add_time', 'update_time'] }
   })
   if (!dbUser) {
     return {
@@ -18,24 +19,18 @@ const login = async function (obj) {
     }
   }   
 
-  const dbLogin = await model.find({
-      where: {
-          username: obj.name,
-      },
-      attributes: { exclude: ['add_time', 'update_time'] }
-  })   
-  if (!bcrypt.compareSync(obj.passwd, dbLogin.password)) {
+  if (!bcrypt.compareSync(obj.passwd, dbUser.password)) {
     return {
       code: -11,
       msg: "密码错误"
     }
   }else{
-    let tk = createToken({ user: dbLogin.username, id: dbLogin.id })  //token中要携带的(jwt payload属性)信息
+    let tk = createToken({ user: dbUser.username, id: dbUser.id })  //token中要携带的(jwt payload属性)信息
     return {
       tk,
       code: 11,
       msg: "登录成功",
-      mgr: dbLogin
+      mgr: dbUser
     }
   }  
 }

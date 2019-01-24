@@ -11,7 +11,7 @@
     * [MySQL](https://dev.mysql.com/downloads/mysql/)
 2. 数据库导入serve文件夹下的koa-admin.sql文件。
     * 注意要先建一个名字叫koa-admin的数据库，在这个数据库下面执行该sql文件
-    * 更改server->config目录下的db.js文件，现在数据库帐号密码用的是root，root1234.把它改为你本地mysql的帐号密码
+    * 更改server->config目录下的db.js文件，现在mysql数据库帐号密码用的是root，root1234。把它改为你本地mysql的帐号密码
 3. 启动管理后台的前后端服务
     打开命令行，输入以下命令
     ```
@@ -45,6 +45,11 @@
 2. webpack 配置,在Vue.config.js加入处理 svg 的 loader
 3. 实现自动导入
 
+##### bcrypt加密
+md5加密的容易被破解。所以就采用了`bcrypt`的加密方式。全部走后端加密。也许你会问这样明文给后端发送密码安全吗？没问题，只要用上HTTPS，这将不是问题。
+
+##### 解析token
+将用户名和id和其他不是很重要的信息一起传过来打包进JWT的主体部分，不要直接暴露`secret-key`。
 #### others
 - node10环境下可能需要更新node-sass依赖 删除package-lock，然后npm rebuild node-sass OR 更改node-sass版本号 然后重新install
 - node新版本加入了npm检查 可能某些包需要手动修复

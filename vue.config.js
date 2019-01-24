@@ -20,6 +20,7 @@ module.exports = {
           }
       }
   },
+
   chainWebpack: config => {
     config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
     //const svgRule = config.module.rule('svg')
@@ -35,5 +36,13 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
-    }
+    },
+
+  baseUrl: undefined,
+  outputDir: undefined,
+  assetsDir: undefined,
+  runtimeCompiler: undefined,
+  productionSourceMap: false,
+  parallel: undefined,
+  css: undefined
 }
