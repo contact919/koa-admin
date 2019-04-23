@@ -36,7 +36,7 @@ const login = async function (obj) {
 }
 
 const setPwd = async function (obj) {
-  const info = await model.find({
+  const info = await model.findOne({
       where: {
           id: obj.id
       }
@@ -65,7 +65,7 @@ const setPwd = async function (obj) {
 
 const setAvatar = async function (obj) {
   // 删除原头像
-  const org = await model.find({
+  const org = await model.findOne({
     where:{
       id: obj.id
     }
