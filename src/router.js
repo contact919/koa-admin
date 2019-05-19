@@ -1,16 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Layout = r => require.ensure([], () => r(require('./views/Layout/index')), 'Layout')
-const error = r => require.ensure([], () => r(require('./views/404')), 'error')
-const login = r => require.ensure([], () => r(require('./views/Mgr/login')), 'login')
-const goodsList = r => require.ensure([], () => r(require('./views/Goods/goodsList')), 'goodsList')
-const goodsCreate = r => require.ensure([], () => r(require('./views/Goods/goodsCreate')), 'goodsCreate')
-const goodsEdit = r => require.ensure([], () => r(require('./views/Goods/goodsEdit')), 'goodsEdit')
-const orderList = r => require.ensure([], () => r(require('./views/Order/orderList')), 'orderList')
-const custList = r => require.ensure([], () => r(require('./views/Cust/custList')), 'custList')
-const avatar = r => require.ensure([], () => r(require('./views/Mgr/avatar')), 'avatar')
-const password = r => require.ensure([], () => r(require('./views/Mgr/password')), 'password')
+const Layout = () => import(/* webpackChunkName: 'Layout' */ './views/Layout/index')
+const error = r => import(/* webpackChunkName: 'error' */ './views/404')
+const login = r => import(/* webpackChunkName: 'login' */ './views/Mgr/login')
+const goodsList = r => import(/* webpackChunkName: 'goodsList' */ './views/Goods/goodsList')
+const goodsCreate = r => import(/* webpackChunkName: 'goodsCreate' */ './views/Goods/goodsCreate')
+const goodsEdit = r => import(/* webpackChunkName: 'goodsEdit' */ './views/Goods/goodsEdit')
+const orderList = r => import(/* webpackChunkName: 'orderList' */ './views/Order/orderList')
+const custList = r => import(/* webpackChunkName: 'custList' */ './views/Cust/custList')
+const testList = r => import(/* webpackChunkName: 'testList' */ './views/Cust/testList')
+const avatar = r => import(/* webpackChunkName: 'personalSet' */ './views/Mgr/avatar')
+const password = r => import(/* webpackChunkName: 'personalSet' */ './views/Mgr/password')
 
 Vue.use(Router)
 
@@ -29,6 +30,9 @@ const routes = [
   ]},
   { path:'', name:'cust', component:Layout, children:[
     {path:'custList', name:'custList', component:custList, meta:{ title: '用户管理', icon: 'cust'}},
+  ]},
+  { path:'', name:'test', component:Layout, children:[
+    {path:'test', name:'testList', component:testList, meta:{ title: 'TEST', icon: 'order'}},
   ]},
   { path:'', name:'set', component:Layout, meta:{ title: '设置', icon: 'set' }, children:[
     {path:'avatar', name:'avatar', component:avatar, meta:{ title: '更换头像'}},
