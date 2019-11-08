@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 const createToken = require('../config/createToken')
 
 const login = async function (obj) {
-  const dbUser = await model.find({
+  const dbUser = await model.findOne({
       where: {
           username: obj.name
       },

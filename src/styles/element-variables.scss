@@ -1,0 +1,17 @@
+/* Element Chalk Variables */
+/* Colors
+-------------------------- */
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+
+$--color-primary: #ed6c00 !default;
+$--color-success: #46c796 !default;
+$--color-warning: #0f8ee9 !default;
+$--color-danger: #f04545 !default;
+$--color-info: #909399 !default;
+
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

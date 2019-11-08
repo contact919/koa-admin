@@ -1,6 +1,5 @@
  //覆盖一些element-ui样式
-
- .el-breadcrumb__inner, .el-breadcrumb__inner a{
+ .el-breadcrumb__inner, .el-breadcrumb__inner a {
   font-weight: 400!important;
 }
 
@@ -79,4 +78,33 @@
   a{
     display: block
   }
+}
+// theme
+.el-message--success {
+  border-color: #46c796;
+  background-color: #46c796;
+}
+.el-message--info {
+  border-color: #0f8ee9;
+  background-color:#0f8ee9;
+}
+.el-message--error {
+  border-color: #f04545;
+  background-color: #f04545;
+}
+.el-message--warning {
+  border-color: #0f8ee9;
+  background-color: #0f8ee9;
+}
+.el-message .el-icon-success,
+.el-message .el-icon-info,
+.el-message .el-icon-error,
+.el-message .el-icon-warning,
+.el-message--success .el-message__content,
+.el-message--info .el-message__content,
+.el-message--error .el-message__content,
+.el-message--warning .el-message__content,
+.el-message__closeBtn,
+.el-message__closeBtn:hover {
+  color: #fff;
 }

@@ -5,6 +5,7 @@ import store from './store'
 import 'normalize.css/normalize.css'  // A modern alternative to CSS resets
 import './plugins/element.js'
 import './plugins/lazyload.js' // vue-lazyload
+import '@/styles/element-variables.scss'  // global css
 import '@/styles/index.scss'  // global css
 import './icons'              // global icon component
 import './utils/permission'
