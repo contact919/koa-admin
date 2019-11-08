@@ -65,7 +65,6 @@ export default {
       if (localStorage.getItem('token') != '' && localStorage.getItem('token') != null) {
         loginIndex.loginByToken(localStorage.getItem('token'))
         .then(rs => {
-          console.log(rs)
           if (rs.status === 200) {
             this.$router.push({ path: '/storeManagement/storeRegistered' })
           }else {

@@ -23,7 +23,6 @@ export default {
   mixins: [ResizeMixin],
   computed: {
     sidebar() {
-      console.log(this.$store.state)
       return this.$store.state.sidebar
     },
     device() {
