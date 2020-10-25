@@ -52,6 +52,6 @@ md5加密的容易被破解。所以就采用了`bcrypt`的加密方式。全部
 将用户名和id和其他不是很重要的信息一起传过来打包进JWT的主体部分，不要直接暴露`secret-key`。
 #### others
 - node10环境下可能需要更新node-sass依赖 删除package-lock，然后npm rebuild node-sass OR 更改node-sass版本号 然后重新install
-- node新版本加入了npm检查 可能某些包需要手动修复-
+- node新版本加入了npm检查 可能某些包需要手动修复
 #### test git stash
 ### test git rebase-4
