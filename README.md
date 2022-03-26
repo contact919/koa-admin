@@ -35,6 +35,7 @@
 
 ##### mysql
 > mysql8以上版本默认使用caching_sha2_password加密方式 node暂时不支持，需要把加密方式改为mysql_native_password。否则node服务会报错
+更改用户里面的root用户 加密方式改为👆即可
 
 > nodejs中json序列化Date类型时，默认转为UTC格式 不带时区，数据库里的时区是中国标准时 直接过去会少8小时。配置timezone: "+08:00"
 

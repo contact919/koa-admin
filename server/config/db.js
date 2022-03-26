@@ -1,10 +1,10 @@
 const Sequelize =require('sequelize')
 
 const mysqlconnection = new Sequelize('koa-admin', 'root', 'root1234',  {
-  host: 'localhost',    //数据库地址,默认本机
+  host: '127.0.0.1',    //数据库地址,默认本机
   port:'3306',
   dialect: 'mysql',
-  operatorsAliases: false,  //不允许使用别名
+  operatorsAliases: 0,  //不允许使用别名
   timezone: "+08:00",  //nodejs中json序列化Date类型时，默认转为UTC格式 不带时区，数据库里的时区是中国标准时 直接过去会少8小时
   pool: {   //连接池设置
     max: 5, //最大连接数
